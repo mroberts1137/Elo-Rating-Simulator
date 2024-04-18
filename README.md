@@ -1,4 +1,4 @@
-#Elo Rating Simulator
+# Elo Rating Simulator
 
 Elo rating provides a relative strength metric for players within a zero-sum game, such as chess or go. This code simulates a game of "Dice" where two players roll a number from a normal distribution, and the player with the higher roll wins. Each player has a "strength" which is just the mean of the distribution. By default, there are 21 players with means spaced evenly from -10 to 10, and a default standard deviation of 3.
 
@@ -15,6 +15,6 @@ If no argument is provided, it defaults to running 10,000 simulations. This will
 
 The results illustrate the expected results for this simple game: a linear distribution of elo scores among the players, i.e., a linear correlation between the mean of the distribution and the elo score.
 
-###Customize the simulation:
+### Customize the simulation:
 You can edit the range of the playerStrengths array or the width to customize the means and standard deviation respectively.
 The initial elo score and the expected average score is 1500, and there's a rate of change of 16. This uses a linear score updating function as is the standard.
