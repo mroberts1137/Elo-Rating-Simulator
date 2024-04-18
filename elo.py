@@ -1,5 +1,15 @@
+import sys
 import numpy as np
 import matplotlib.pyplot as plt
+
+playerStrength = np.arange(-10, 11)
+numPlayers = len(playerStrength)
+players = np.arange(numPlayers)
+width = 3
+winMatrix = np.zeros((numPlayers, numPlayers))
+gamesMatrix = np.zeros((numPlayers, numPlayers))
+elo = np.ones(numPlayers) * 1500
+elo_rate = 16
 
 def reset_stats():
     winMatrix = np.zeros((numPlayers, numPlayers))
@@ -41,7 +51,7 @@ def create_elo_plot():
     ax.set_title('Elo Rating of Various Strength Normal Distributions in a Game of Dice')
     ax.set_xlabel('Player Strength')
     ax.set_ylabel('Elo Rating')
-    fig.show()
+    plt.show()
 
 def create_wins_plot():
     fig, ax = plt.subplots()
@@ -49,22 +59,18 @@ def create_wins_plot():
     ax.set_title('Win Matrix of Various Strength Normal Distributions in a Game of Dice')
     ax.set_xlabel('Player')
     ax.set_ylabel('Player')
-    fig.show()
+    plt.show()
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    # initiate parameters
-    playerStrength = np.arange(-10, 11)
-    numPlayers = len(playerStrength)
-    players = np.arange(numPlayers)
-    width = 3
-    winMatrix = np.zeros((numPlayers, numPlayers))
-    gamesMatrix = np.zeros((numPlayers, numPlayers))
-    elo = np.ones(numPlayers) * 1500
-    elo_rate = 16
-
     # run simulations
-    simulate_matches(10000)
+    try:
+        simulate_matches(int(sys.argv[1]))
+        print(f'Completed {sys.argv[1]} simulations.')
+    except IndexError:
+        simulate_matches(10000)
+        print('Completed 10000 simulations.')
+
     print(elo)
     create_wins_plot()
     create_elo_plot()
